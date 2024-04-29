@@ -1,0 +1,49 @@
+gather_facts: true
+
+Ansible will automatically call the setup module at the start of the play to collect facts about the hosts
+
+gather_facts: false
+
+Ansible will not call the setup module, and no facts will be gathered. You might want to do this to speed up operations if the play does not depend on the facts collected or if you are running a very simple playbook that doesn’t require host-specific information.
+
+
+General system information:
+
+ansible_distribution: The name of the distribution (e.g., Ubuntu, Fedora).
+ansible_distribution_version: The version of the distribution.
+ansible_os_family: The family of the OS (e.g., Debian, RedHat).
+ansible_kernel: The kernel version of the system.
+ansible_fqdn: The fully qualified domain name.
+ansible_hostname: The hostname of the system.
+ansible_architecture: The architecture of the system (e.g., x86_64).
+ansible_system: The system type (e.g., Linux, Windows).
+Network-related information:
+
+ansible_default_ipv4: Default IPv4 details like address, netmask, and gateway.
+ansible_default_ipv6: Default IPv6 details if configured.
+ansible_interfaces: A list of network interfaces on the system.
+ansible_{{ interface }}: Detailed facts for each network interface.
+Hardware details:
+
+ansible_devices: Information about disk devices.
+ansible_memtotal_mb: Total memory in MB.
+ansible_processor: List of processor information.
+ansible_processor_cores: The number of processor cores available.
+ansible_processor_vcpus: The number of vCPUs available.
+User and environment information:
+
+ansible_user_id: The user running Ansible on the remote system.
+ansible_user_dir: The home directory of the user running Ansible.
+ansible_env: Environment variables of the remote user.
+Date and time:
+
+ansible_date_time: Current date, time, week, year, month, etc.
+Python environment on the managed node:
+
+ansible_python_version: The version of Python installed.
+ansible_python_executable: The path to the Python executable used by Ansible.
+Virtualization:
+
+ansible_virtualization_type: The type of virtualization in use (e.g., KVM, Docker).
+ansible_virtualization_role: Host or guest in virtual systems.
+These facts are automatically added to the host's variables and can be used throughout the playbook for templating, conditional execution, and so on. For example, you could conditionally execute a task based on the operating system distribution using ansible_distribution.
